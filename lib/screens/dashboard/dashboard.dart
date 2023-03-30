@@ -13,7 +13,7 @@ import 'package:news_app/providers/tab_provider.dart';
 import 'package:news_app/providers/theme_provider.dart';
 import 'package:news_app/responsive/responsive.dart';
 import 'package:news_app/widgets/article_card.dart';
-import 'package:news_app/widgets/bottom_navbar.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:news_app/widgets/custom_text_field.dart';
 import 'package:news_app/widgets/headlines_card.dart';
 import 'package:news_app/utils/app_utils.dart';

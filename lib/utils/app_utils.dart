@@ -1,4 +1,3 @@
-
 class AppUtils {
   static const List<String> categories = [
     'general',
@@ -8,6 +7,7 @@ class AppUtils {
     'health',
     'sports',
     'entertainment',
+    'politics'
   ];
 
   static const List<String> tabsLabel = [

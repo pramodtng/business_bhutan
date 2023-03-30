@@ -1,6 +1,5 @@
 part of '../dashboard.dart';
 
-// import '../../../widgets/bottom_navbar.dart';
 class DashboardMobile extends StatefulWidget {
   const DashboardMobile({Key? key}) : super(key: key);
 
@@ -62,7 +61,78 @@ class _DashboardMobileState extends State<DashboardMobile> {
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
-          bottomNavigationBar: const BottomNavBar(index: 0),
+          drawer: Drawer(
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                    children: [
+                      const SizedBox(height: 40),
+                      ListTile(
+                        leading: const Icon(
+                          Icons.home,
+                        ),
+                        title: const Text('Home'),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(
+                          Icons.settings,
+                        ),
+                        title: const Text('Setting'),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(
+                          Icons.info,
+                        ),
+                        title: const Text('About Us'),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 24.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                          child: Icon(
+                        Icons.facebook,
+                        color: Colors.blue,
+                      )),
+                      SizedBox(
+                        child: Icon(
+                          FeatherIcons.twitter,
+                          color: Colors.blue,
+                        ),
+                      ),
+                      SizedBox(
+                          child: Icon(
+                        FeatherIcons.youtube,
+                        color: Colors.blue,
+                      )),
+                      SizedBox(
+                        child: Icon(
+                          FeatherIcons.instagram,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
           body: SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.only(bottom: 5),
@@ -103,6 +173,29 @@ class _DashboardMobileState extends State<DashboardMobile> {
                     ),
                   ),
                   Space.y1!,
+                  CustomTextField(
+                    controller: searchController,
+                    hint: 'Search keyword...',
+                    textInputType: TextInputType.text,
+                    prefixIcon: IconButton(
+                      splashRadius: AppDimensions.normalize(8),
+                      onPressed: () {
+                        if (searchController.text.isNotEmpty) {
+                          articleCubit.fetch(
+                            keyword: searchController.text.trim(),
+                          );
+                        }
+                      },
+                      icon: const Icon(Icons.search),
+                    ),
+                    onChangeFtn: (value) {
+                      if (value == null || value.isEmpty) {
+                        articleCubit.fetch();
+                      }
+                      return value;
+                    },
+                    isSuffixIcon: true,
+                  ),
                   const CategoryTabs(),
                   Space.y1!,
                   Row(
@@ -168,29 +261,6 @@ class _DashboardMobileState extends State<DashboardMobile> {
                     style: AppText.h3b,
                   ),
                   Space.y!,
-                  CustomTextField(
-                    controller: searchController,
-                    hint: 'Search keyword...',
-                    textInputType: TextInputType.text,
-                    prefixIcon: IconButton(
-                      splashRadius: AppDimensions.normalize(8),
-                      onPressed: () {
-                        if (searchController.text.isNotEmpty) {
-                          articleCubit.fetch(
-                            keyword: searchController.text.trim(),
-                          );
-                        }
-                      },
-                      icon: const Icon(Icons.search),
-                    ),
-                    onChangeFtn: (value) {
-                      if (value == null || value.isEmpty) {
-                        articleCubit.fetch();
-                      }
-                      return value;
-                    },
-                    isSuffixIcon: true,
-                  ),
                   Space.y1!,
                   BlocBuilder<ArticlesCubit, ArticlesState>(
                     builder: (context, state) {
