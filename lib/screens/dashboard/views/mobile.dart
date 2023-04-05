@@ -99,12 +99,12 @@ class _DashboardMobileState extends State<DashboardMobile> {
                     ],
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 24.0),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 24.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: const [
                       SizedBox(
                           child: Icon(
                         Icons.facebook,
